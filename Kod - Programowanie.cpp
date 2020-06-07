@@ -1,23 +1,68 @@
-void Twórz()
+#include <iostream>
+#include <conio.h>
+using namespace std;
+bool koniec;
+const int szerokoÅ›Ä‡ = 20;
+const int wysokoÅ›Ä‡ = 17;
+int x, y, owocX, owocY, Wynik;
+int ogonX[100], ogonY[100]; //pozycja wÄ™Å¼a
+int dÅ‚ugoÅ›Ä‡_ogona;
+enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN }; // kontrola
+eDirecton dir;
+void Ustawienia()
+{
+    koniec = false;
+    dir = STOP;
+    x = szerokoÅ›Ä‡ / 2;
+    y = wysokoÅ›Ä‡ / 2;
+    owocX = rand() % szerokoÅ›Ä‡; //losowa pozycja owocu
+    owocY = rand() % wysokoÅ›Ä‡;
+    Wynik = 0;
+}
+void WejÅ›cie()
+{
+    if (_kbhit())
+    {
+        switch (_getch())
+        {
+        case 'a':
+            dir = LEFT;
+            break;
+        case 'd':
+            dir = RIGHT;
+            break;
+        case 'w':
+            dir = UP;
+            break;
+        case 's':
+            dir = DOWN;
+            break;
+        case 'x':
+            koniec = true;
+            break;
+        }
+    }
+}
+void TwÃ³rz()
 {
 system("cls");
-for (int i = 0; i < szerokoœæ + 2; i++)
+for (int i = 0; i < szerokoÅ“Ã¦ + 2; i++)
     cout << "#";
 cout << endl;
-for (int i = 0; i < wysokoœæ; i++)
+for (int i = 0; i < wysokoÅ“Ã¦; i++)
 {
-    for (int j = 0; j < szerokoœæ; j++)
+    for (int j = 0; j < szerokoÅ“Ã¦; j++)
     {
         if (j == 0)
             cout << "#"; //granice
         if (i == y && j == x)
-            cout << "X"; //w¹¿
+            cout << "X"; //wÂ¹Â¿
         else if (i == owocY && j == owocX)
             cout << "O"; //owoc
         else
         {
             bool print = false;
-            for (int k = 0; k < d³ugoœæ_ogona; k++)
+            for (int k = 0; k < dÂ³ugoÅ“Ã¦_ogona; k++)
             {
                 if (ogonX[k] == j && ogonY[k] == i)
                 {
@@ -28,12 +73,12 @@ for (int i = 0; i < wysokoœæ; i++)
             if (!print)
                 cout << " ";
         }
-        if (j == szerokoœæ - 1)
+        if (j == szerokoÅ“Ã¦ - 1)
             cout << "#";
     }
     cout << endl;
 }
-for (int i = 0; i < szerokoœæ + 2; i++)
+for (int i = 0; i < szerokoÅ“Ã¦ + 2; i++)
     cout << "#";
 cout << endl;
 cout << "Wynik:" << Wynik << endl;
